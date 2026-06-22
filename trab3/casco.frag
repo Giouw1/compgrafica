@@ -57,7 +57,7 @@ void main() {
     float distToCenter = length(canonicalPos.xz - holeCenter);
 
     // Discriminador de profundidade restabelecido na constante de extrusão bruta
-    float isTopShell = 1.0 - step(40.0, canonicalPos.y); 
+    float isTopShell = 1.0 - step(0.0, canonicalPos.y); 
 
     // Máscara com antisserrilhamento exato de 1 unidade absoluta
     float holeMask = (1.0 - smoothstep(holeRadius - 1.0, holeRadius, distToCenter)) * isTopShell;
