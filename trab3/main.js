@@ -37,7 +37,7 @@ let bodyMesh, neckMesh, metalMesh, boneMesh;
 let globalScale = 1.0; // Adição do ponteiro global de escala
 function setup() {
   createCanvas(800, 600, WEBGL);
-
+  colorMode(RGB, 255, 255, 255, 255);
   // ==========================================
   // CONTROLE MESTRE DE COMPRIMENTO
   // ==========================================
