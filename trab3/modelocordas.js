@@ -60,6 +60,22 @@ class AcousticSynthesizer {
     oscHarmonics.start(t);
     oscFundamental.stop(t + 4.0);
     oscHarmonics.stop(t + 4.0);
+    // 3. Aplicação do Filtro Envelope ADSR Exponencial
+    gainFundamental.gain.setValueAtTime(0.8, t);
+    gainFundamental.gain.exponentialRampToValueAtTime(0.001, t + 4.0);
+
+    gainHarmonics.gain.setValueAtTime(0.3, t);
+    gainHarmonics.gain.exponentialRampToValueAtTime(0.001, t + 1.5); 
+
+    // CORREÇÃO: Atenuação rigorosa da amplitude para inibir a saturação (Clipping)
+    // O valor 0.15 garante que 6 cordas somadas (6 * 0.15 = 0.90) operem abaixo do teto de 1.0
+    masterGain.gain.setValueAtTime(0.15, t); 
+
+    oscFundamental.start(t);
+    oscHarmonics.start(t);
+    oscFundamental.stop(t + 4.0);
+    oscHarmonics.stop(t + 4.0);
+  
   }
 }
 
