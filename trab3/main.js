@@ -83,6 +83,7 @@ const processGroup = (group) => {
   // 3. Inicialização das Cordas
   stringsOrchestrator = new StringOrchestrator(headAngle,guitarLength);
   buildControlPanel();
+  camera(0, 0, 400, 0, 0, 0, 0, 1, 0);
 }
 
 function draw() {
