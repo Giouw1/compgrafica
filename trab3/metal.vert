@@ -1,17 +1,16 @@
 #version 300 es
 precision highp float;
-
-// Atributos topológicos de entrada
+//Posições, coordenadas de textura e normais
 in vec3 aPosition;
 in vec2 aTexCoord;
 in vec3 aNormal;
 
-// Matrizes de Transformação
+//Modelview, Projeção, matriz de correção de normal
 uniform mat4 uModelViewMatrix;
 uniform mat4 uProjectionMatrix;
-uniform mat3 uNormalMatrix; // Restrição bidimensional correta (3x3)
+uniform mat3 uNormalMatrix;
 
-// Vetores de Interpolação para o Fragment Shader
+//O que saí desse vert shader: as novas posições, normais, e texturas
 out vec3 vNormal;
 out vec3 vViewPos;
 out vec2 vTexCoord;

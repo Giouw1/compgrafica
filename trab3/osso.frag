@@ -6,11 +6,11 @@ in vec3 vNormal;
 in vec3 vViewPos;
 
 out vec4 fragColor;
-
+//pseudorandom
 float random(vec2 st) {
     return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
 }
-
+//O noise usado para perturbar a mistura das cores
 float noise(vec2 st) {
     vec2 i = floor(st);
     vec2 f = fract(st);
@@ -25,7 +25,7 @@ float noise(vec2 st) {
            (c - a) * u.y * (1.0 - u.x) +
            (d - b) * u.x * u.y;
 }
-
+//Mistura das cores
 void main() {
     vec3 fix = vNormal * 0.0 + vViewPos * 0.0;
     vec2 uv = vTexCoord;

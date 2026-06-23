@@ -42,26 +42,22 @@ void main() {
     vec3 darkWood  = vec3(0.25, 0.15, 0.04);
     vec3 woodColor = mix(darkWood, lightWood, t);
 
-    // -------------------------------------------------------------
-    // OPERADOR GEOMÉTRICO DE OCLUSÃO (ESPAÇO CANÔNICO 1:1)
-    // -------------------------------------------------------------
-    // Restaura as coordenadas comprimidas para a proporção original do motor matemático
+    // Restaura as coordenadas originais: para poder fazer a oclusão
     vec3 canonicalPos = vLocalPos / uScale;
 
-    // Alocação rigorosa das âncoras na topologia 1:1 original
-    // Z = 90 alinha o orifício sob o fim do espelho (fretboard) e antes do cavalete
+    // alinhamento do hole
     vec2 holeCenter = vec2(0.0, 45.0); 
     float holeRadius = 15.0;
 
-    // A distância agora é computada sem sofrer influência do fator lambda
+    // a dist agora é computada sem sofrer influência do fator lambda
     float distToCenter = length(canonicalPos.xz - holeCenter);
 
-    // Discriminador de profundidade restabelecido na constante de extrusão bruta
+    // discriminador de profundidade para a oclusão: só quero tirar a de cima
     float isTopShell = 1.0 - step(0.1, canonicalPos.y); 
 
-    // Máscara com antisserrilhamento exato de 1 unidade absoluta
+    // Máscara com antisserrilhamento exato de 1 unidade absoluta que usa o istopshell p decidir
     float holeMask = (1.0 - smoothstep(holeRadius - 1.0, holeRadius, distToCenter)) * isTopShell;
-
+//Cor do buracos
     vec3 holeColor = vec3(0.02, 0.01, 0.005); 
     vec3 finalColor = mix(woodColor, holeColor, holeMask);
     // -------------------------------------------------------------
